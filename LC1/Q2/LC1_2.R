@@ -1,0 +1,24 @@
+# Function to encrypt a single character using Caesar cipher
+encrypt_char <- function(char, shift) {
+  if (grepl("[A-Z]", char)) {  # Uppercase letters
+    return(intToUtf8((utf8ToInt(char) - utf8ToInt("A") + shift) %% 26 + utf8ToInt("A")))
+  } else if (grepl("[a-z]", char)) {  # Lowercase letters
+    return(intToUtf8((utf8ToInt(char) - utf8ToInt("a") + shift) %% 26 + utf8ToInt("a")))
+  } else {
+    return(char)  # Non-alphabetic characters remain the same
+  }
+}
+
+# Read sentence from the user
+cat("Enter a sentence to encrypt:\n")
+sentence <- readline()
+
+# Read shift value from the user
+cat("Enter the shift value (integer):\n")
+shift <- as.integer(readline())
+
+# Encrypt the sentence
+encrypted_sentence <- paste0(sapply(strsplit(sentence, NULL)[[1]], encrypt_char, shift = shift), collapse = "")
+
+# Print the encrypted sentence
+cat("Encrypted sentence:\n", encrypted_sentence, "\n")
