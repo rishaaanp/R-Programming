@@ -1,0 +1,85 @@
+> ### ---- PART A ----
+> # Statistical test: Are there significant differences in sepal lengths between species?
+> 
+> # First, view the data structure .... [TRUNCATED] 
+'data.frame':	150 obs. of  5 variables:
+ $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+ $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+ $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+ $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+ $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+
+> # Visualize sepal length distributions
+> ggplot(iris, aes(x = Species, y = Sepal.Length, fill = Species)) +
++   geom_boxplot() +
++   labs(title = "S ..." ... [TRUNCATED] 
+
+> # Check assumptions before ANOVA
+> # 1. Normality (using Shapiro test for each group)
+> by(iris$Sepal.Length, iris$Species, shapiro.test)
+iris$Species: setosa
+
+	Shapiro-Wilk normality test
+
+data:  dd[x, ]
+W = 0.9777, p-value = 0.4595
+
+------------------------------------------------------------------------------------------ 
+iris$Species: versicolor
+
+	Shapiro-Wilk normality test
+
+data:  dd[x, ]
+W = 0.97784, p-value = 0.4647
+
+------------------------------------------------------------------------------------------ 
+iris$Species: virginica
+
+	Shapiro-Wilk normality test
+
+data:  dd[x, ]
+W = 0.97118, p-value = 0.2583
+
+
+> # 2. Homogeneity of variance (Levene’s Test)
+> library(car)
+
+> leveneTest(Sepal.Length ~ Species, data = iris)
+Levene's Test for Homogeneity of Variance (center = median)
+       Df F value   Pr(>F)   
+group   2  6.3527 0.002259 **
+      147                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+> # Perform one-way ANOVA
+> anova_result <- aov(Sepal.Length ~ Species, data = iris)
+
+> summary(anova_result)
+             Df Sum Sq Mean Sq F value Pr(>F)    
+Species       2  63.21  31.606   119.3 <2e-16 ***
+Residuals   147  38.96   0.265                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+> # If ANOVA is significant, perform post-hoc test (Tukey HSD)
+> tukey_result <- TukeyHSD(anova_result)
+
+> print(tukey_result)
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Sepal.Length ~ Species, data = iris)
+
+$Species
+                      diff       lwr       upr p adj
+versicolor-setosa    0.930 0.6862273 1.1737727     0
+virginica-setosa     1.582 1.3382273 1.8257727     0
+virginica-versicolor 0.652 0.4082273 0.8957727     0
+
+
+> ### ---- PART B ----
+> # Pair plot to visualize relationships among all variables
+> ggpairs(iris,
++         columns = 1:4,
++         mapping = aes(c .... [TRUNCATED]
