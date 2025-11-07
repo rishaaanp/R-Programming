@@ -1,0 +1,42 @@
+> # Load the dataset
+> data(mtcars)
+
+> # View first few rows
+> head(mtcars)
+                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+
+> # Select relevant variables
+> hp <- mtcars$hp    # Horsepower
+
+> mpg <- mtcars$mpg  # Miles per gallon
+
+> # Scatter plot to visualize the relationship
+> plot(hp, mpg,
++      main = "Scatter Plot of Horsepower vs Miles per Gallon",
++      xlab = "Horsepow ..." ... [TRUNCATED] 
+
+> # Add a regression line
+> abline(lm(mpg ~ hp), col = "red", lwd = 2)
+
+> # Perform Pearson correlation test
+> cor_test_result <- cor.test(hp, mpg, method = "pearson")
+
+> # Display the result
+> print(cor_test_result)
+
+	Pearson's product-moment correlation
+
+data:  hp and mpg
+t = -6.7424, df = 30, p-value = 1.788e-07
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.8852686 -0.5860994
+sample estimates:
+       cor 
+-0.7761684 
