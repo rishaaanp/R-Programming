@@ -1,0 +1,88 @@
+> # (a) Create an adjacency list representation 
+> # for an undirected graph
+> # ------------ .... [TRUNCATED] 
+
+> # Create an empty graph
+> g <- make_empty_graph(n = length(vertices), directed = FALSE)
+
+> V(g)$name <- vertices  # name the vertices
+
+> # Print initial adjacency list (empty)
+> cat("Initial Adjacency List:\n")
+Initial Adjacency List:
+
+> print(as_adj_list(g))
+$A
++ 0/5 vertices, named, from 062a045:
+
+$B
++ 0/5 vertices, named, from 062a045:
+
+$C
++ 0/5 vertices, named, from 062a045:
+
+$D
++ 0/5 vertices, named, from 062a045:
+
+$E
++ 0/5 vertices, named, from 062a045:
+
+
+> # ----------------------------------------------------
+> # (b) Function to add an edge between two vertices
+> # ------------------------------------ .... [TRUNCATED] 
+
+> # Add some edges
+> g <- add_edge(g, "A", "B")
+
+> g <- add_edge(g, "A", "C")
+
+> g <- add_edge(g, "B", "D")
+
+> g <- add_edge(g, "C", "E")
+
+> g <- add_edge(g, "D", "E")
+
+> # Display updated adjacency list
+> cat("\nUpdated Adjacency List:\n")
+
+Updated Adjacency List:
+
+> print(as_adj_list(g))
+$A
++ 2/5 vertices, named, from 0640788:
+[1] B C
+
+$B
++ 2/5 vertices, named, from 0640788:
+[1] A D
+
+$C
++ 2/5 vertices, named, from 0640788:
+[1] A E
+
+$D
++ 2/5 vertices, named, from 0640788:
+[1] B E
+
+$E
++ 2/5 vertices, named, from 0640788:
+[1] C D
+
+
+> # ----------------------------------------------------
+> # (c) DFS Traversal Function
+> # ----------------------------------------------------
+> dfs .... [TRUNCATED] 
+
+> # Perform DFS starting from vertex "A"
+> dfs_traversal(g, "A")
+
+DFS Traversal starting from A :
+[1] "A" "B" "D" "E" "C"
+
+> # ----------------------------------------------------
+> # Optional: Plot the graph
+> plot(g,
++      vertex.size = 30,
++      vertex.color = "skyblu ..." ... [TRUNCATED]
