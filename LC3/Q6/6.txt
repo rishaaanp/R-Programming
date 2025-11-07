@@ -1,0 +1,165 @@
+> # (a) Data Exploration and Visualization
+> # ---------------------------------------------- .... [TRUNCATED] 
+
+> boston <- Boston
+
+> # View structure and first few rows
+> str(boston)
+'data.frame':	506 obs. of  14 variables:
+ $ crim   : num  0.00632 0.02731 0.02729 0.03237 0.06905 ...
+ $ zn     : num  18 0 0 0 0 0 12.5 12.5 12.5 12.5 ...
+ $ indus  : num  2.31 7.07 7.07 2.18 2.18 2.18 7.87 7.87 7.87 7.87 ...
+ $ chas   : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ nox    : num  0.538 0.469 0.469 0.458 0.458 0.458 0.524 0.524 0.524 0.524 ...
+ $ rm     : num  6.58 6.42 7.18 7 7.15 ...
+ $ age    : num  65.2 78.9 61.1 45.8 54.2 58.7 66.6 96.1 100 85.9 ...
+ $ dis    : num  4.09 4.97 4.97 6.06 6.06 ...
+ $ rad    : int  1 2 2 3 3 3 5 5 5 5 ...
+ $ tax    : num  296 242 242 222 222 222 311 311 311 311 ...
+ $ ptratio: num  15.3 17.8 17.8 18.7 18.7 18.7 15.2 15.2 15.2 15.2 ...
+ $ black  : num  397 397 393 395 397 ...
+ $ lstat  : num  4.98 9.14 4.03 2.94 5.33 ...
+ $ medv   : num  24 21.6 34.7 33.4 36.2 28.7 22.9 27.1 16.5 18.9 ...
+
+> head(boston)
+     crim zn indus chas   nox    rm  age    dis rad tax ptratio  black lstat medv
+1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3 396.90  4.98 24.0
+2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8 396.90  9.14 21.6
+3 0.02729  0  7.07    0 0.469 7.185 61.1 4.9671   2 242    17.8 392.83  4.03 34.7
+4 0.03237  0  2.18    0 0.458 6.998 45.8 6.0622   3 222    18.7 394.63  2.94 33.4
+5 0.06905  0  2.18    0 0.458 7.147 54.2 6.0622   3 222    18.7 396.90  5.33 36.2
+6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
+
+> # Summary statistics
+> summary(boston)
+      crim                zn             indus            chas              nox               rm       
+ Min.   : 0.00632   Min.   :  0.00   Min.   : 0.46   Min.   :0.00000   Min.   :0.3850   Min.   :3.561  
+ 1st Qu.: 0.08205   1st Qu.:  0.00   1st Qu.: 5.19   1st Qu.:0.00000   1st Qu.:0.4490   1st Qu.:5.886  
+ Median : 0.25651   Median :  0.00   Median : 9.69   Median :0.00000   Median :0.5380   Median :6.208  
+ Mean   : 3.61352   Mean   : 11.36   Mean   :11.14   Mean   :0.06917   Mean   :0.5547   Mean   :6.285  
+ 3rd Qu.: 3.67708   3rd Qu.: 12.50   3rd Qu.:18.10   3rd Qu.:0.00000   3rd Qu.:0.6240   3rd Qu.:6.623  
+ Max.   :88.97620   Max.   :100.00   Max.   :27.74   Max.   :1.00000   Max.   :0.8710   Max.   :8.780  
+      age              dis              rad              tax           ptratio          black            lstat      
+ Min.   :  2.90   Min.   : 1.130   Min.   : 1.000   Min.   :187.0   Min.   :12.60   Min.   :  0.32   Min.   : 1.73  
+ 1st Qu.: 45.02   1st Qu.: 2.100   1st Qu.: 4.000   1st Qu.:279.0   1st Qu.:17.40   1st Qu.:375.38   1st Qu.: 6.95  
+ Median : 77.50   Median : 3.207   Median : 5.000   Median :330.0   Median :19.05   Median :391.44   Median :11.36  
+ Mean   : 68.57   Mean   : 3.795   Mean   : 9.549   Mean   :408.2   Mean   :18.46   Mean   :356.67   Mean   :12.65  
+ 3rd Qu.: 94.08   3rd Qu.: 5.188   3rd Qu.:24.000   3rd Qu.:666.0   3rd Qu.:20.20   3rd Qu.:396.23   3rd Qu.:16.95  
+ Max.   :100.00   Max.   :12.127   Max.   :24.000   Max.   :711.0   Max.   :22.00   Max.   :396.90   Max.   :37.97  
+      medv      
+ Min.   : 5.00  
+ 1st Qu.:17.02  
+ Median :21.20  
+ Mean   :22.53  
+ 3rd Qu.:25.00  
+ Max.   :50.00  
+
+> # Check for missing values
+> sum(is.na(boston))
+[1] 0
+
+> # Correlation matrix (for numerical relationships)
+> corr_matrix <- cor(boston)
+
+> corrplot(corr_matrix, method = "color", tl.cex = 0.8)
+
+> # Pair plot (selected variables)
+> pairs(~ medv + lstat + rm + crim + dis, data = boston,
++       main = "Pair Plot of Key Variables in Boston Datas ..." ... [TRUNCATED] 
+
+> # Boxplot of Median Value (medv)
+> ggplot(boston, aes(y = medv)) +
++   geom_boxplot(fill = "lightblue", color = "black") +
++   labs(title = "Boxplot ..." ... [TRUNCATED] 
+
+> # ----------------------------------------------------
+> # (b) Regression Analysis
+> # ----------------------------------------------------
+> 
+> # F .... [TRUNCATED] 
+
+> # Display model summary
+> summary(model)
+
+Call:
+lm(formula = medv ~ ., data = boston)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-15.595  -2.730  -0.518   1.777  26.199 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  3.646e+01  5.103e+00   7.144 3.28e-12 ***
+crim        -1.080e-01  3.286e-02  -3.287 0.001087 ** 
+zn           4.642e-02  1.373e-02   3.382 0.000778 ***
+indus        2.056e-02  6.150e-02   0.334 0.738288    
+chas         2.687e+00  8.616e-01   3.118 0.001925 ** 
+nox         -1.777e+01  3.820e+00  -4.651 4.25e-06 ***
+rm           3.810e+00  4.179e-01   9.116  < 2e-16 ***
+age          6.922e-04  1.321e-02   0.052 0.958229    
+dis         -1.476e+00  1.995e-01  -7.398 6.01e-13 ***
+rad          3.060e-01  6.635e-02   4.613 5.07e-06 ***
+tax         -1.233e-02  3.760e-03  -3.280 0.001112 ** 
+ptratio     -9.527e-01  1.308e-01  -7.283 1.31e-12 ***
+black        9.312e-03  2.686e-03   3.467 0.000573 ***
+lstat       -5.248e-01  5.072e-02 -10.347  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 4.745 on 492 degrees of freedom
+Multiple R-squared:  0.7406,	Adjusted R-squared:  0.7338 
+F-statistic: 108.1 on 13 and 492 DF,  p-value: < 2.2e-16
+
+
+> # Diagnostic plots
+> par(mfrow = c(2, 2))
+
+> plot(model)
+
+> par(mfrow = c(1, 1))
+
+> # ----------------------------------------------------
+> # (c) Prediction
+> # ----------------------------------------------------
+> 
+> # Split data .... [TRUNCATED] 
+
+> train_index <- createDataPartition(boston$medv, p = 0.8, list = FALSE)
+
+> train_data <- boston[train_index, ]
+
+> test_data  <- boston[-train_index, ]
+
+> # Train regression model on training data
+> model_final <- lm(medv ~ ., data = train_data)
+
+> # Predict on test data
+> predictions <- predict(model_final, newdata = test_data)
+
+> # Compare predictions vs actual values
+> comparison <- data.frame(Actual = test_data$medv, Predicted = predictions)
+
+> head(comparison)
+   Actual Predicted
+3    34.7  30.60406
+6    28.7  25.73072
+9    16.5  11.53748
+11   15.0  19.10925
+14   20.4  19.83953
+15   18.2  19.62739
+
+> # Calculate RMSE (Root Mean Square Error)
+> rmse <- sqrt(mean((predictions - test_data$medv)^2))
+
+> cat("Root Mean Square Error (RMSE):", rmse, "\n")
+Root Mean Square Error (RMSE): 4.588948 
+
+> # Predict median home value for a new example (optional)
+> new_data <- data.frame(
++   crim = 0.1, zn = 18, indus = 2.3, chas = 0, nox = 0.5, rm = 6 .... [TRUNCATED] 
+
+> predicted_value <- predict(model_final, new_data)
+
+> cat("Predicted Median Value (in $1000s):", predicted_value, "\n")
+Predicted Median Value (in $1000s): 27.81399 
